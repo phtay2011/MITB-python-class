@@ -68,3 +68,6 @@ df[['corpus','sentiment']].head()
 
 export_csv = df.to_csv (r'movie_list_v4.csv', index = None, header=True) 
 
+
+    
+
