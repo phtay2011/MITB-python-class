@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 import re
 import numpy as np
 #Next we will read the data in into an array that we call tweets.
-tweets_data_path = 'movies_data.txt'
+tweets_data_path = 'movies_list_v2.csv'
 
 tweets_data = []
 tweets_file = open(tweets_data_path, "r")
@@ -27,6 +27,7 @@ print (len(tweets_data))
 
 #Create a Dataframe
 tweets = pd.DataFrame()
+tweets  = pd.read_csv(tweets_data_path)
 
 #Func to extract info from dic
 def extract_dic_key (string):
@@ -99,23 +100,18 @@ def word_in_text(word, text):
     if match:
         return True
     return False
-movie_list = ['Vagabond','Wine Country','Always Be My Maybe','The Man Without Gravity','See You Yesterday',
-              'The Wandering Earth','Tall Girl','Sex Education', 'When the camellia blooms', 'Interior Design Masters']
-#To find word in text
-for i in movie_list:
+movie_data =['Joker','Shoplifters','Toy Story 4','Avengers: Endgame','Doctor Sleep','Zombieland: Double Tap','Official Secret','Once Upon a Time in Hollywood','Spider-Man: Far From Home','Rocketman','Avengers','Doctor','Zombieland','Endgame','Sleep','Double Tap','Spider-Man','Far From Home']#To find word in text
+for i in movie_data:
     tweets[i] = tweets['text'].apply(lambda tweet: word_in_text(i, tweet))
-
+tweets.columns
 #Calculate number of tweets
-print (tweets['Vagabond'].value_counts()[True])
-print (tweets['Wine Country'].value_counts()[True])
-print (tweets['Always Be My Maybe'].value_counts()[True])
-print (tweets['The Man Without Gravity'].value_counts()[True])
-print (tweets['See You Yesterday'].value_counts()[True])
-print (tweets['The Wandering Earth'].value_counts()[True])
-print (tweets['Tall Girl'].value_counts()[True])
-print (tweets['Sex Education'].value_counts()[True])
-print (tweets['When the camellia blooms'].value_counts()[True])
-print (tweets['Interior Design Masters'].value_counts()[True])
+lst={}
+for i in movie_data:
+    try:
+        lst[i] = tweets[i].value_counts()[True]
+    except:
+        lst[i] = 0
+    
 
 
 #Plot Graph
