@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 import re
 import numpy as np
 #Next we will read the data in into an array that we call tweets.
-tweets_data_path = 'data/text/actors_data.txt'
+tweets_data_path = 'movies_data.txt'
 
 tweets_data = []
 tweets_file = open(tweets_data_path, "r")
@@ -65,7 +65,7 @@ tweets['user_location']=user_col
 
 
 #Convert df to csv
-tweets.to_csv (r'actors_list.csv', index = None, header=True) #Don't forget to add '.csv' at the end of the path
+tweets.to_csv (r'movies_list.csv', index = None, header=True) #Don't forget to add '.csv' at the end of the path
 
 #Create charts
 tweets_by_lang = tweets['lang'].value_counts()
